@@ -1,6 +1,8 @@
 # SNAKES GAME
-# Use ARROW KEYS to play, SPACE BAR for pausing/resuming and Esc Key for exiting
-# Code courtesy of Sanchit Gangwar: https://gist.github.com/sanchitgangwar/2158089
+# Use ARROW KEYS to play, SPACE BAR for pausing/resuming
+#  and Esc Key for exiting
+# Code courtesy of Sanchit Gangwar:
+# https://gist.github.com/sanchitgangwar/2158089
 
 import curses
 from curses import KEY_RIGHT, KEY_LEFT, KEY_UP, KEY_DOWN
@@ -52,9 +54,12 @@ while key != 27:
     if key not in [KEY_LEFT, KEY_RIGHT, KEY_UP, KEY_DOWN, 27]:
         key = prevKey
 
-    # Calculates the new coordinates of the head of the snake. NOTE: len(snake) increases.
+    # Calculates the new coordinates of the head of the snake.
+    # NOTE: len(snake) increases.
     # This is taken care of later at [1].
-    snake.insert(0, [snake[0][0] + (key == KEY_DOWN and 1) + (key == KEY_UP and -1), snake[0][1] + (key == KEY_LEFT and -1) + (key == KEY_RIGHT and 1)])
+    snake.insert(0, [snake[0][0] + (key == KEY_DOWN and 1) +
+                 (key == KEY_UP and -1), snake[0][1] +
+                 (key == KEY_LEFT and -1) + (key == KEY_RIGHT and 1)])
 
     # If snake crosses the boundaries, make it enter from the other side
     if snake[0][0] == 0:
@@ -71,21 +76,25 @@ while key != 27:
     # snake[0][1] == 0 or snake[0][1] == 59: break
 
     # If snake runs over itself
-    if snake[0] in snake[1:]: break
+    if snake[0] in snake[1:]:
+        break
 
-    
-    if snake[0] == food:                                            # When snake eats the food
+# When snake eats the food
+    if snake[0] == food:
         food = []
         score += 1
         while food == []:
-            food = [randint(1, 18), randint(1, 58)]                 # Calculating next food's coordinates
-            if food in snake: food = []
+            # Calculating next food's coordinates
+            food = [randint(1, 18), randint(1, 58)]
+            if food in snake:
+                food = []
         win.addch(food[0], food[1], '*')
-    else:    
-        last = snake.pop()                                          # [1] If it does not eat the food, length decreases
+    else:
+        # [1] If it does not eat the food, length decreases
+        last = snake.pop()
         win.addch(last[0], last[1], ' ')
     win.addch(snake[0][0], snake[0][1], '#')
-    
+
 curses.endwin()
 print("\nScore - " + str(score))
 print("http://bitemelater.in\n")
