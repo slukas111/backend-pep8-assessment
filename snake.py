@@ -57,11 +57,14 @@ while key != 27:
     snake.insert(0, [snake[0][0] + (key == KEY_DOWN and 1) + (key == KEY_UP and -1), snake[0][1] + (key == KEY_LEFT and -1) + (key == KEY_RIGHT and 1)])
 
     # If snake crosses the boundaries, make it enter from the other side
-    if snake[0][0] == 0: 
+    if snake[0][0] == 0:
         snake[0][0] = 18
-    if snake[0][1] == 0: snake[0][1] = 58
-    if snake[0][0] == 19: snake[0][0] = 1
-    if snake[0][1] == 59: snake[0][1] = 1
+    if snake[0][1] == 0:
+        snake[0][1] = 58
+    if snake[0][0] == 19:
+        snake[0][0] = 1
+    if snake[0][1] == 59:
+        snake[0][1] = 1
 
     # Exit if snake crosses the boundaries (Uncomment to enable)
     #if snake[0][0] == 0 or snake[0][0] == 19 or snake[0][1] == 0 or snake[0][1] == 59: break
